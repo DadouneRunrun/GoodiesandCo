@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - Goodies and Co{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                <h1 class="fontconnection text-center pt-5 pb-4">Connexion</h1>
+                <div class="bground mx-auto mb-5 fontform">
+
+
+                    <label class="pb-3" for="inputEmail">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                        class="form-control mb-3" autocomplete="email" required autofocus>
+
+                    <label class="pb-3" for="inputPassword">Mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control mb-3"
+                        autocomplete="current-password" required>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button class="btn btn-sm btn-primary buttonorange " type="submit">
+                        Connexion
+                    </button>
+                </div>
+                <p class="text-center">Ou souhaitez vous <a href="{{ path('app_register') }}">créer un compte</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
